@@ -62,6 +62,7 @@ button:hover{
     background:#ff5d8f;
 }
 
+  
     
 /* YES / NO */
 #yesBtn{
@@ -153,7 +154,7 @@ button:hover{
 <div id="afterYes" class="page">
 <img src="afterYESpage.jpg">
 <h2>YEPPIEEE~ you're the sweetest!! </h2>
-<button onclick="goPage2()">Next ➜</button>
+<button onclick="goPage2AndPlayMusic()">Next ➜</button>
 </div>
 
 <!-- PAGE 2 -->
@@ -238,16 +239,14 @@ function goYes(){
     document.getElementById("page1").classList.remove("active");
     document.getElementById("afterYes").classList.add("active");
 }
-function goPage2(){
+function goPage2AndPlayMusic(){
     document.getElementById("afterYes").classList.remove("active");
     document.getElementById("page2").classList.add("active");
 
     let music = document.getElementById("music");
     music.loop = true;
 
-    music.play().catch(() => {
-        console.log("Autoplay blocked, waiting for interaction");
-    });
+    music.play().catch(() => console.log("Autoplay blocked"));
 
     document.getElementById("musicBtn").style.display="block";
 }
