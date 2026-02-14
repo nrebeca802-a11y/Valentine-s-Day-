@@ -172,9 +172,13 @@ button:hover{
 
 <!-- SONG POPUP -->
 <div id="songPopup" class="popup">
-  <div class="popup-content song-list" style="background-image:url('songsbg.jpg'); background-size:cover; background-position:center; height:100%; width:100%; border-radius:20px;">
+  <div class="popup-content">
+    <h2>Songs that reminds me of you 🎶</h2>
+    <img src="songsbg.jpg" alt="Songs Image" style="width:100%; max-width:320px; border-radius:20px; margin:10px 0;">
+    <br>
+    <button onclick="closeSongs()">Close</button>
   </div>
-</div>>
+</div>
 
 <audio id="music" src="song.mp3"></audio>
 
