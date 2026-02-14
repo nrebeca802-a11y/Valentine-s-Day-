@@ -253,8 +253,15 @@ function closeSongs(){
 }
     function stopMusic(){
     let music = document.getElementById("music");
-    music.pause();
-    music.currentTime = 0;
+    let btn = document.getElementById("musicBtn");
+
+    if(music.paused){
+        music.play();
+        btn.innerHTML = "🔊";
+    }else{
+        music.pause();
+        btn.innerHTML = "🔇";
+    }
     }
 </script>
 
