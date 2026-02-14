@@ -242,15 +242,18 @@ function goYes(){
     document.getElementById("page1").classList.remove("active");
     document.getElementById("afterYes").classList.add("active");
 }
-
 function goPage2(){
     document.getElementById("afterYes").classList.remove("active");
     document.getElementById("page2").classList.add("active");
 
-    // Play background music for page 2
     let music = document.getElementById("music");
-    music.loop = true; // keeps repeating
-    music.play();
+    music.loop = true;
+
+    music.play().catch(() => {
+        console.log("Autoplay blocked, waiting for interaction");
+    });
+
+    document.getElementById("musicBtn").style.display="block";
 }
 /* POPUP LOGIC */
 function openBouquet(){
