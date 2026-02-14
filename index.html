@@ -219,10 +219,13 @@ function goYes(){
     document.getElementById("page1").classList.remove("active");
     document.getElementById("afterYes").classList.add("active");
 }
-
 function goPage2(){
     document.getElementById("afterYes").classList.remove("active");
     document.getElementById("page2").classList.add("active");
+
+    // Play background music
+    let music = document.getElementById("music");
+    music.play();
 }
 
 /* POPUP LOGIC */
