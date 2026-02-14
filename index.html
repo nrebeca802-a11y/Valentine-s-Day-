@@ -2,39 +2,40 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1 , maximu-scale=1 , user-scalable=no">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 <title>My Valentine</title>
 
 <style>
-    *{
+/* GENERAL RESET */
+*{
     box-sizing:border-box;
 }
-html,body{
+html, body{
     width:100%;
-    overflow-x:hidden;
-}
-body{
     margin:0;
-    font-family:'Comic Sans MS', cursive;
+    overflow-x:hidden;
+    font-family: 'Comic Sans MS', cursive;
     background: linear-gradient(#fff0f5, #ffe4ec);
     text-align:center;
-
     display:flex;
     justify-content:center;
     align-items:center;
     min-height:100vh;
 }
-/* GENERAL */
+
+/* PAGES */
 .page{
     display:none;
     padding:20px;
     width:100%;
     max-width:420px;
 }
+
 .active{
     display:block;
 }
 
+/* IMAGES */
 img{
     width:100%;
     max-width:320px;
@@ -42,6 +43,7 @@ img{
     border-radius:20px;
     margin-top:20px;
 }
+
 /* BUTTONS */
 button{
     padding:12px 20px;
@@ -52,7 +54,6 @@ button{
     color:white;
     margin:10px;
     transition:0.3s;
-
     width:70%;
     max-width:260px;
 }
@@ -61,28 +62,22 @@ button:hover{
     background:#ff5d8f;
 }
 
-/* YES NO */
+/* YES / NO */
 #yesBtn{
     font-size:20px;
 }
-
 #noBtn{
     background:#888;
 }
 
-/* ICON OBJECTS PAGE 2 */
+/* ICONS PAGE 2 */
 .icon{
     width:100px;
     margin:20px;
     cursor:pointer;
 }
 
-/* envelope animation */
-.envelope{
-    width:200px;
-}
-
-/* popup */
+/* POPUPS */
 .popup{
     position:fixed;
     top:0;
@@ -93,8 +88,8 @@ button:hover{
     display:none;
     justify-content:center;
     align-items:center;
+    z-index:100;
 }
-
 .popup-content{
     background:white;
     padding:20px;
@@ -104,16 +99,16 @@ button:hover{
     overflow:auto;
 }
 
-/* bouncing images */
+/* BOUNCE EFFECT */
 .bounce img{
     animation:bounce 1s infinite alternate;
 }
-
 @keyframes bounce{
     from{transform:translateY(0);}
     to{transform:translateY(-20px);}
 }
 
+/* SONGS LIST */
 .song-list{
     background-size:cover;
     color:white;
@@ -127,81 +122,60 @@ button:hover{
 
 <!-- PAGE 1 -->
 <div id="page1" class="page active">
-
 <h1>Do you wanna be my Valentine? 💗</h1>
-
-<img src="mainphoto.jpg">
-
+<img src="mainphoto.jpg" alt="Main Photo">
 <br>
-
 <button id="yesBtn" onclick="goYes()">YES 💕</button>
 <button id="noBtn" onclick="growYes()">No</button>
-
 </div>
 
 <!-- AFTER YES -->
 <div id="afterYes" class="page">
-
-<img src="happyphoto.jpg">
+<img src="happyphoto.jpg" alt="Happy Photo">
 <h2>You made me the happiest person 💖</h2>
 <button onclick="goPage2()">Next ➜</button>
-
 </div>
 
 <!-- PAGE 2 -->
 <div id="page2" class="page">
-
 <h2>For You 🌸</h2>
-
-<img src="bouquet.png" class="icon" onclick="openBouquet()">
-<img src="envelope.png" class="icon" onclick="openLetter()">
-<img src="disc.png" class="icon" onclick="openSongs()">
-
+<img src="bouquet.png" class="icon" onclick="openBouquet()" alt="Bouquet">
+<img src="envelope.png" class="icon" onclick="openLetter()" alt="Envelope">
+<img src="disc.png" class="icon" onclick="openSongs()" alt="Song Disc">
 </div>
 
 <!-- BOUQUET POPUP -->
 <div id="bouquetPopup" class="popup">
 <div class="popup-content bounce">
 <h2>I give your favourites <3</h2>
-<img src="fav1.jpg">
-<img src="fav2.jpg">
-<img src="fav3.jpg">
+<img src="fav1.jpg" alt="Fav 1">
+<img src="fav2.jpg" alt="Fav 2">
+<img src="fav3.jpg" alt="Fav 3">
 <br><button onclick="closePopup('bouquetPopup')">Close</button>
 </div>
 </div>
 
-<!-- LETTER -->
+<!-- LETTER POPUP -->
 <div id="letterPopup" class="popup">
 <div class="popup-content">
 <h2>My Letter 💌</h2>
-
-<p>
-Write your first page here...
-</p>
-
+<p>Write your first page here...</p>
 <hr>
-
-<p>
-Write your second page here...
-</p>
-
+<p>Write your second page here...</p>
 <br>
 <button onclick="closePopup('letterPopup')">Close</button>
 </div>
 </div>
 
-<!-- SONGS -->
+<!-- SONG POPUP -->
 <div id="songPopup" class="popup">
 <div class="popup-content song-list" style="background-image:url('songsbg.jpg')">
-
 <h2>Songs that reminds me of you 🎶</h2>
-
 <ul>
 <li>Your Song 1</li>
 <li>Your Song 2</li>
 <li>Your Song 3</li>
 </ul>
-
 <button onclick="closeSongs()">Close</button>
 </div>
 </div>
@@ -209,21 +183,26 @@ Write your second page here...
 <audio id="music" src="song.mp3"></audio>
 
 <script>
+/* YES / NO BUTTON LOGIC */
 let yesSize = 20;
 let noClick = 0;
 
 const messages = [
 "Are you sure? 🥺",
 "Really sure??",
-"I worked hard on this 😔",
+"I worked hard on this =( ",
 "Please don't be mad at me more...",
 "I'll be very sad...",
 "You're breaking my heart 💔",
-"I'm really sorry, but give me a chance",
+"Give it a chance at least..",
 "Okay now you're just being mean",
-"Press YES pleaseee",
-"I know you want to press YES too, so just do 🙏🏻"
+"Please just press YES ",
+"I know you want too, so please do 🙏🏻"
 ];
+
+function growYes(){
+    yesSize += 8;
+    document.getElementById("yesBtn").style.fontSize = yesSize + "px";
 
     let noBtn = document.getElementById("noBtn");
 
@@ -235,6 +214,7 @@ const messages = [
 
     noClick++;
 }
+
 function goYes(){
     document.getElementById("page1").classList.remove("active");
     document.getElementById("afterYes").classList.add("active");
@@ -245,6 +225,7 @@ function goPage2(){
     document.getElementById("page2").classList.add("active");
 }
 
+/* POPUP LOGIC */
 function openBouquet(){
     document.getElementById("bouquetPopup").style.display="flex";
 }
@@ -269,4 +250,4 @@ function closeSongs(){
 </script>
 
 </body>
-      </html>
+</html>
