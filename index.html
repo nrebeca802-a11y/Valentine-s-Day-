@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>My Valentine</title>
+
+<style>
+body{
+    margin:0;
+    font-family: 'Comic Sans MS', cursive;
+    background: linear-gradient(#fff0f5, #ffe4ec);
+    text-align:center;
+}
+
+/* GENERAL */
+.page{
+    display:none;
+    padding:20px;
+}
+
+.active{
+    display:block;
+}
+
+img{
+    max-width:90%;
+    border-radius:20px;
+    margin-top:20px;
+}
+
+/* BUTTONS */
+button{
+    padding:12px 20px;
+    border:none;
+    border-radius:15px;
+    font-size:18px;
+    background:#ff8fab;
+    color:white;
+    margin:10px;
+    transition:0.3s;
+}
+
+button:hover{
+    background:#ff5d8f;
+}
+
+/* YES NO */
+#yesBtn{
+    font-size:20px;
+}
+
+#noBtn{
+    background:#888;
+}
+
+/* ICON OBJECTS PAGE 2 */
+.icon{
+    width:100px;
+    margin:20px;
+    cursor:pointer;
+}
+
+/* envelope animation */
+.envelope{
+    width:200px;
+}
+
+/* popup */
+.popup{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background:rgba(0,0,0,0.6);
+    display:none;
+    justify-content:center;
+    align-items:center;
+}
+
+.popup-content{
+    background:white;
+    padding:20px;
+    border-radius:20px;
+    width:85%;
+    max-height:85%;
+    overflow:auto;
+}
+
+/* bouncing images */
+.bounce img{
+    animation:bounce 1s infinite alternate;
+}
+
+@keyframes bounce{
+    from{transform:translateY(0);}
+    to{transform:translateY(-20px);}
+}
+
+.song-list{
+    background-size:cover;
+    color:white;
+    padding:20px;
+    border-radius:20px;
+}
+</style>
+</head>
+
+<body>
+
+<!-- PAGE 1 -->
+<div id="page1" class="page active">
+
+<h1>Do you wanna be my Valentine? 💗</h1>
+
+<img src="mainphoto.jpg">
+
+<br>
+
+<button id="yesBtn" onclick="goYes()">YES 💕</button>
+<button id="noBtn" onclick="growYes()">No</button>
+
+</div>
+
+<!-- AFTER YES -->
+<div id="afterYes" class="page">
+
+<img src="happyphoto.jpg">
+<h2>You made me the happiest person 💖</h2>
+<button onclick="goPage2()">Next ➜</button>
+
+</div>
+
+<!-- PAGE 2 -->
+<div id="page2" class="page">
+
+<h2>For You 🌸</h2>
+
+<img src="bouquet.png" class="icon" onclick="openBouquet()">
+<img src="envelope.png" class="icon" onclick="openLetter()">
+<img src="disc.png" class="icon" onclick="openSongs()">
+
+</div>
+
+<!-- BOUQUET POPUP -->
+<div id="bouquetPopup" class="popup">
+<div class="popup-content bounce">
+<h2>I give your favourites <3</h2>
+<img src="fav1.jpg">
+<img src="fav2.jpg">
+<img src="fav3.jpg">
+<br><button onclick="closePopup('bouquetPopup')">Close</button>
+</div>
+</div>
+
+<!-- LETTER -->
+<div id="letterPopup" class="popup">
+<div class="popup-content">
+<h2>My Letter 💌</h2>
+
+<p>
+Write your first page here...
+</p>
+
+<hr>
+
+<p>
+Write your second page here...
+</p>
+
+<br>
+<button onclick="closePopup('letterPopup')">Close</button>
+</div>
+</div>
+
+<!-- SONGS -->
+<div id="songPopup" class="popup">
+<div class="popup-content song-list" style="background-image:url('songsbg.jpg')">
+
+<h2>Songs that reminds me of you 🎶</h2>
+
+<ul>
+<li>Your Song 1</li>
+<li>Your Song 2</li>
+<li>Your Song 3</li>
+</ul>
+
+<button onclick="closeSongs()">Close</button>
+</div>
+</div>
+
+<audio id="music" src="song.mp3"></audio>
+
+<script>
+let yesSize = 20;
+
+function growYes(){
+    yesSize += 8;
+    document.getElementById("yesBtn").style.fontSize = yesSize + "px";
+}
+
+function goYes(){
+    document.getElementById("page1").classList.remove("active");
+    document.getElementById("afterYes").classList.add("active");
+}
+
+function goPage2(){
+    document.getElementById("afterYes").classList.remove("active");
+    document.getElementById("page2").classList.add("active");
+}
+
+function openBouquet(){
+    document.getElementById("bouquetPopup").style.display="flex";
+}
+
+function openLetter(){
+    document.getElementById("letterPopup").style.display="flex";
+}
+
+function openSongs(){
+    document.getElementById("songPopup").style.display="flex";
+    document.getElementById("music").play();
+}
+
+function closePopup(id){
+    document.getElementById(id).style.display="none";
+}
+
+function closeSongs(){
+    document.getElementById("songPopup").style.display="none";
+    document.getElementById("music").pause();
+}
+</script>
+
+</body>
+      </html>
