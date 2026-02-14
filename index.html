@@ -210,12 +210,35 @@ Write your second page here...
 
 <script>
 let yesSize = 20;
+let noClick = 0;
+
+const messages = [
+"Are you sure? 🥺",
+"Really sure??",
+"I worked hard on this 😔",
+"Please don't be mad at me more...",
+"I'll be very sad...",
+"You're breaking my heart 💔",
+"I'm really sorry, but give me a chance",
+"Okay now you're just being mean",
+"Press YES pleaseee",
+"I know you want to press YES too, so just do 🙏🏻"
+];
 
 function growYes(){
     yesSize += 8;
     document.getElementById("yesBtn").style.fontSize = yesSize + "px";
-}
 
+    let noBtn = document.getElementById("noBtn");
+
+    if(noClick < messages.length){
+        noBtn.innerText = messages[noClick];
+    }else{
+        noBtn.innerText = "The button refuses...";
+    }
+
+    noClick++;
+}
 function goYes(){
     document.getElementById("page1").classList.remove("active");
     document.getElementById("afterYes").classList.add("active");
